@@ -26,6 +26,23 @@ public class skelleton : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if (transform.position.x == 0){
+            if (Mathf.Abs(transform.position.z) <= 15){
+                animator.Play("iddle");
+            }
+            else{
+                walkFront();
+            }
+        }
+        else{
+            if (Mathf.Abs(transform.position.z) <= 15){
+                animator.Play("iddle");
+            }
+            else{
+                walkFront();
+            }
+        }
+       
         if (curHealth != curHealthBar) {
             float x = ((curHealthBar - curHealth) * 0.01f);
             curHealthBar = curHealth;
@@ -50,6 +67,42 @@ public class skelleton : MonoBehaviour {
         
         
 
+    }
+
+    public void walkFront()
+    {
+       Vector3 a = transform.position;
+        if (transform.position.x == 0)
+        {
+            if (transform.position.z>0)
+            {
+                Vector3 b = new Vector3(a.x, a.y, a.z - 0.01f);
+                transform.position = b;
+            }
+            else
+            {
+                Vector3 b = new Vector3(a.x, a.y, a.z + 0.01f);
+                transform.position = b;
+            }
+        }
+        else
+        {
+            if (transform.position.x >0)
+            {
+                Vector3 b = new Vector3(a.x - 0.01f, a.y, a.z );
+                transform.position = b;
+            }
+            else
+            {
+                Vector3 b = new Vector3(a.x + 0.01f, a.y, a.z);
+                transform.position = b;
+            }
+        }
+
+
+
+        
+       
     }
 
     public void attack(float atk) {

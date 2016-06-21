@@ -52,9 +52,12 @@ public class player : MonoBehaviour
         if (playerHealth > 0)
         {
             playerHealth -= dmg;
+            if (playerHealth < 0) playerHealth = 0;
         }
+        
+    }
 
-    } 
+    
 
     void FixedUpdate()
     {
