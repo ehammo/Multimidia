@@ -7,6 +7,7 @@ public class skelleton : MonoBehaviour {
     private float curHealthBar;
     public float count;
     public int controle;
+    public float atk;
     private GameObject healthbar;
     Animator animator;
     player player;
@@ -14,6 +15,7 @@ public class skelleton : MonoBehaviour {
 	void Start () {
         count = 0;
         controle = 0;
+        atk = 10;
         animator = GetComponent<Animator>();
 		maxHealth = 100f;
 		curHealth = 100f;
@@ -31,8 +33,8 @@ public class skelleton : MonoBehaviour {
         }
         AnimatorStateInfo asi = animator.GetCurrentAnimatorStateInfo(0);
         count = Mathf.Round(asi.normalizedTime * 100f)/100f;
-        if (asi.IsName("Attack") && controle==1&&count>=1) {
-            attack();
+        if (asi.IsName("Attack") && controle==1&&count>=0.8) {
+            attack(atk);
             controle--;
         }
 
@@ -50,9 +52,9 @@ public class skelleton : MonoBehaviour {
 
     }
 
-    public void attack() {
+    public void attack(float atk) {
 
-        player.damage();
+        player.damage(atk);
 
     }
 

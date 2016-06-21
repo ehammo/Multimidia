@@ -39,18 +39,19 @@ public class player : MonoBehaviour
     void Update()
     {
         GameObject player = GameObject.Find("Player_life");
-        if (playerHealth != playerHealthBar)
+        if (playerHealth>=0)
         {
             float x = ((playerHealthBar - playerHealth) * 0.01f);
             playerHealthBar = playerHealth;
             player.transform.localScale -= new Vector3(x, 0, 0);
         }
+        print(playerHealth);
     }
 
-    public void damage() {
+    public void damage(float dmg) {
         if (playerHealth > 0)
         {
-            playerHealth -= 50f;
+            playerHealth -= dmg;
         }
 
     } 
