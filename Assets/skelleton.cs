@@ -26,22 +26,7 @@ public class skelleton : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (transform.position.x == 0){
-            if (Mathf.Abs(transform.position.z) <= 15){
-                animator.Play("iddle");
-            }
-            else{
-                walkFront();
-            }
-        }
-        else{
-            if (Mathf.Abs(transform.position.z) <= 15){
-                animator.Play("iddle");
-            }
-            else{
-                walkFront();
-            }
-        }
+       
        
         if (curHealth != curHealthBar) {
             float x = ((curHealthBar - curHealth) * 0.01f);
@@ -61,11 +46,34 @@ public class skelleton : MonoBehaviour {
 
         if ((asi.IsName("death") && !animator.IsInTransition(0) && count>=1))
         {
-            GameObject skeleto = GameObject.Find("skeleton");
-            Destroy(skeleto);
+            Destroy(this.gameObject);
         }
-        
-        
+
+        if (asi.IsName("walkFront"))
+        {
+            if (transform.position.x == 0)
+            {
+                if (Mathf.Abs(transform.position.z) <= 15)
+                {
+                    animator.Play("iddle");
+                }
+                else
+                {
+                    walkFront();
+                }
+            }
+            else
+            {
+                if (Mathf.Abs(transform.position.x) <= 15)
+                {
+                    animator.Play("iddle");
+                }
+                else
+                {
+                    walkFront();
+                }
+            }
+        }
 
     }
 
@@ -76,12 +84,12 @@ public class skelleton : MonoBehaviour {
         {
             if (transform.position.z>0)
             {
-                Vector3 b = new Vector3(a.x, a.y, a.z - 0.01f);
+                Vector3 b = new Vector3(a.x, a.y, a.z - 1f);
                 transform.position = b;
             }
             else
             {
-                Vector3 b = new Vector3(a.x, a.y, a.z + 0.01f);
+                Vector3 b = new Vector3(a.x, a.y, a.z + 1f);
                 transform.position = b;
             }
         }
@@ -89,12 +97,12 @@ public class skelleton : MonoBehaviour {
         {
             if (transform.position.x >0)
             {
-                Vector3 b = new Vector3(a.x - 0.01f, a.y, a.z );
+                Vector3 b = new Vector3(a.x - 1f, a.y, a.z );
                 transform.position = b;
             }
             else
             {
-                Vector3 b = new Vector3(a.x + 0.01f, a.y, a.z);
+                Vector3 b = new Vector3(a.x + 1f, a.y, a.z);
                 transform.position = b;
             }
         }
