@@ -144,8 +144,8 @@ public class player : MonoBehaviour
 
     private void UpdateCameraLook()
     {
-        velocity += (Input.acceleration*Time.fixedDeltaTime);
-        transform.Translate(velocity);
+//        velocity += (Input.acceleration*Time.fixedDeltaTime);
+//        transform.Translate(velocity);
         transform.Rotate(Input.gyro.rotationRate);
 
     }
